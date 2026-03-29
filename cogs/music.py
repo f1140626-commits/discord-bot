@@ -223,7 +223,11 @@ class MusicCog(commands.Cog, name="音樂功能"):
     @discord.app_commands.describe(query="輸入 YouTube 連結或想搜尋的歌曲關鍵字")
     async def play(self, interaction: discord.Interaction, query: str):
         """核心播放指令"""
-        await interaction.response.defer() # 延遲回覆，機器人正在思考中（因為 yt-dlp 抓取需要時間）
+        try:
+            await interaction.response.defer() # 延遲回覆，機器人正在思考中（因為 yt-dlp 抓取需要時間）
+        except discord.errors.NotFound:
+            # 忽略因為網路延遲或機器人剛啟動時導致互動過期 (超過3秒) 的錯誤
+            pass
 
         guild_id = interaction.guild_id
         player = self.get_player(guild_id)
