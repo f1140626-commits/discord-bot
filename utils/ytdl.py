@@ -16,8 +16,8 @@ YTDL_OPTIONS = {
     'quiet': True,
     'no_warnings': True,
     'default_search': 'ytsearch', # 若輸入不是網址，預設在 YouTube 搜尋
-    # 移除或更改 player_client，避免雲端主機觸發 YouTube Bot 防護 (Android client 常造成 format not available)
-    'extractor_args': {'youtube': {'player_client': ['web']}},
+    # 嘗試使用 TV 或 ios 等客戶端來繞過網頁與安卓端的嚴格防護
+    'extractor_args': {'youtube': {'player_client': ['tv', 'web']}},
 }
 
 # 判斷如果有匯出 cookies，就使用它來繞過 YouTube 官方的 Bot 機器人驗證 (特別是在雲端伺服器上)
