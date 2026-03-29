@@ -1,5 +1,6 @@
 import yt_dlp
 import asyncio
+import os
 
 # yt-dlp 的抓取設定 (最佳音質、不下載影片、過濾廣告)
 YTDL_OPTIONS = {
@@ -17,6 +18,10 @@ YTDL_OPTIONS = {
     'default_search': 'ytsearch', # 若輸入不是網址，預設在 YouTube 搜尋
     'source_address': '0.0.0.0',
 }
+
+# 判斷如果有匯出 cookies，就使用它來繞過 YouTube 官方的 Bot 機器人驗證 (特別是在雲端伺服器上)
+if os.path.exists('cookies.txt'):
+    YTDL_OPTIONS['cookiefile'] = 'cookies.txt'
 
 ytdl = yt_dlp.YoutubeDL(YTDL_OPTIONS)
 
