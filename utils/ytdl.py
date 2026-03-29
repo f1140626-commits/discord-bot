@@ -16,7 +16,7 @@ YTDL_OPTIONS = {
     'quiet': True,
     'no_warnings': True,
     'default_search': 'ytsearch', # 若輸入不是網址，預設在 YouTube 搜尋
-    'source_address': '0.0.0.0',
+    'extractor_args': {'youtube': {'player_client': ['android', 'web']}}, # 加上這行能擴充 YouTube 的支援度
 }
 
 # 判斷如果有匯出 cookies，就使用它來繞過 YouTube 官方的 Bot 機器人驗證 (特別是在雲端伺服器上)
